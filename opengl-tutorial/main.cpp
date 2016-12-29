@@ -72,6 +72,9 @@ int main(int argc, const char * argv[]) {
     GLuint programID = LoadShaders("res/shaders/vertex.glsl", "res/shaders/fragment.glsl");
     
     do{
+        // setup matrix coordinates
+        mat4 mvp;
+        
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -86,6 +89,14 @@ int main(int argc, const char * argv[]) {
             (GLvoid *)0
         );
         glUseProgram(programID);
+        
+        glUniformMatrix4fv(
+            glGetUniformLocation(programID, "MVP"),
+            1,
+            GL_FALSE,
+            &mvp[0][0]
+        );
+        
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glDisableVertexAttribArray(0);
         

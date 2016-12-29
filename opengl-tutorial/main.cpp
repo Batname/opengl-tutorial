@@ -4,6 +4,8 @@
 
 // c++ standart lib
 #include <iostream>
+#include <vector>
+#include <fstream>
 
 // GLEW
 #define GLEW_STATIC
@@ -15,13 +17,16 @@
 // GLM for math
 #include <glm/glm.hpp>
 
+// local files
+#include "LoadShaders.h"
+
 using namespace std;
 using namespace glm;
 
 static const GLfloat g_vertex_buffer_data[] = {
     -1.0f, -1.0f, +0.0f,
     +1.0f, -1.0f, +0.0f,
-    +1.0f, +1.0f, +0.0f
+    +0.0f, +1.0f, +0.0f
 };
 
 int main(int argc, const char * argv[]) {
@@ -64,9 +69,11 @@ int main(int argc, const char * argv[]) {
     glGenBuffers(1, &VertexBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, VertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+    GLuint programID = LoadShaders("res/shaders/vertex.glsl", "res/shaders/fragment.glsl");
     
     do{
         glfwPollEvents();
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, VertexBufferID);
@@ -78,6 +85,7 @@ int main(int argc, const char * argv[]) {
             0,
             (GLvoid *)0
         );
+        glUseProgram(programID);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glDisableVertexAttribArray(0);
         

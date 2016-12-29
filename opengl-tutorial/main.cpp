@@ -18,6 +18,12 @@
 using namespace std;
 using namespace glm;
 
+static const GLfloat g_vertex_buffer_data[] = {
+    -1.0f, -1.0f, +0.0f,
+    +1.0f, -1.0f, +0.0f,
+    +1.0f, +1.0f, +0.0f
+};
+
 int main(int argc, const char * argv[]) {
     // init glfw
     if (!glfwInit()) {
@@ -49,9 +55,33 @@ int main(int argc, const char * argv[]) {
     // glfw settings
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
     
+    // init binding open gl
+    GLuint VertexArrayID;
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
+    
+    GLuint VertexBufferID;
+    glGenBuffers(1, &VertexBufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, VertexBufferID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+    
     do{
-        glfwSwapBuffers(window);
         glfwPollEvents();
+
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, VertexBufferID);
+        glVertexAttribPointer(
+            0,
+            3,
+            GL_FLOAT,
+            GL_FALSE,
+            0,
+            (GLvoid *)0
+        );
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDisableVertexAttribArray(0);
+        
+        glfwSwapBuffers(window);
     } while(glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
     
 

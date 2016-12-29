@@ -94,7 +94,7 @@ int main(int argc, const char * argv[]) {
             glGetUniformLocation(programID, "MVP"),
             1,
             GL_FALSE,
-            &mvp[0][0]
+            ((float *)((vec4 *)(&mvp) + 0) + 0) // == &mvp[0][0]
         );
         
         glDrawArrays(GL_TRIANGLES, 0, 3);

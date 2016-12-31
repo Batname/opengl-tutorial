@@ -12,6 +12,9 @@
 		18121DAA1E15A052006FAF10 /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18121DA91E15A052006FAF10 /* libGLEW.2.0.0.dylib */; };
 		18121DAC1E15A060006FAF10 /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18121DAB1E15A060006FAF10 /* libglfw3.3.2.dylib */; };
 		18121DAF1E15AB01006FAF10 /* res in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18121DAD1E15A9CC006FAF10 /* res */; };
+		18121DC71E179B55006FAF10 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18121DC61E179B55006FAF10 /* main.cpp */; };
+		18121DCD1E179B98006FAF10 /* MiscellaneaTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18121DCB1E179B98006FAF10 /* MiscellaneaTest.cpp */; };
+		18121DCF1E179CF7006FAF10 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18121DCE1E179CF7006FAF10 /* libgtest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18121DC21E179B55006FAF10 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +47,10 @@
 		18121DAB1E15A060006FAF10 /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
 		18121DAD1E15A9CC006FAF10 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		18121DAE1E15AA0C006FAF10 /* LoadShaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadShaders.h; sourceTree = "<group>"; };
+		18121DC41E179B55006FAF10 /* OpenGLTutorialsTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLTutorialsTests; sourceTree = BUILT_PRODUCTS_DIR; };
+		18121DC61E179B55006FAF10 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		18121DCB1E179B98006FAF10 /* MiscellaneaTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MiscellaneaTest.cpp; sourceTree = "<group>"; };
+		18121DCE1E179CF7006FAF10 /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = ../../../../../usr/local/Cellar/gtest/libgtest.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +64,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18121DC11E179B55006FAF10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18121DCF1E179CF7006FAF10 /* libgtest.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				18121D9E1E15A01F006FAF10 /* opengl-tutorial */,
+				18121DC51E179B55006FAF10 /* OpenGLTutorialsTests */,
 				18121D9D1E15A01F006FAF10 /* Products */,
 				18121DA61E15A039006FAF10 /* Frameworks */,
 			);
@@ -64,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				18121D9C1E15A01F006FAF10 /* opengl-tutorial */,
+				18121DC41E179B55006FAF10 /* OpenGLTutorialsTests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,11 +107,37 @@
 		18121DA61E15A039006FAF10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18121DCE1E179CF7006FAF10 /* libgtest.a */,
 				18121DAB1E15A060006FAF10 /* libglfw3.3.2.dylib */,
 				18121DA91E15A052006FAF10 /* libGLEW.2.0.0.dylib */,
 				18121DA71E15A039006FAF10 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18121DC51E179B55006FAF10 /* OpenGLTutorialsTests */ = {
+			isa = PBXGroup;
+			children = (
+				18121DD11E17AB9F006FAF10 /* Misc */,
+				18121DD01E17AB93006FAF10 /* MatrixTests */,
+				18121DC61E179B55006FAF10 /* main.cpp */,
+			);
+			path = OpenGLTutorialsTests;
+			sourceTree = "<group>";
+		};
+		18121DD01E17AB93006FAF10 /* MatrixTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MatrixTests;
+			sourceTree = "<group>";
+		};
+		18121DD11E17AB9F006FAF10 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				18121DCB1E179B98006FAF10 /* MiscellaneaTest.cpp */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +160,23 @@
 			productReference = 18121D9C1E15A01F006FAF10 /* opengl-tutorial */;
 			productType = "com.apple.product-type.tool";
 		};
+		18121DC31E179B55006FAF10 /* OpenGLTutorialsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18121DCA1E179B55006FAF10 /* Build configuration list for PBXNativeTarget "OpenGLTutorialsTests" */;
+			buildPhases = (
+				18121DC01E179B55006FAF10 /* Sources */,
+				18121DC11E179B55006FAF10 /* Frameworks */,
+				18121DC21E179B55006FAF10 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenGLTutorialsTests;
+			productName = OpenGLTutorialsTests;
+			productReference = 18121DC41E179B55006FAF10 /* OpenGLTutorialsTests */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -118,6 +187,10 @@
 				ORGANIZATIONNAME = apple;
 				TargetAttributes = {
 					18121D9B1E15A01F006FAF10 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					18121DC31E179B55006FAF10 = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
 					};
@@ -136,6 +209,7 @@
 			projectRoot = "";
 			targets = (
 				18121D9B1E15A01F006FAF10 /* opengl-tutorial */,
+				18121DC31E179B55006FAF10 /* OpenGLTutorialsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -146,6 +220,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				18121DA01E15A01F006FAF10 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18121DC01E179B55006FAF10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18121DCD1E179B98006FAF10 /* MiscellaneaTest.cpp in Sources */,
+				18121DC71E179B55006FAF10 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +356,38 @@
 			};
 			name = Release;
 		};
+		18121DC81E179B55006FAF10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/gtest,
+					/usr/local/include,
+					/usr/local/Cellar/glm/0.9.8.3/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/gtest,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		18121DC91E179B55006FAF10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/gtest,
+					/usr/local/include,
+					/usr/local/Cellar/glm/0.9.8.3/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/gtest,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -292,6 +407,16 @@
 				18121DA51E15A01F006FAF10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18121DCA1E179B55006FAF10 /* Build configuration list for PBXNativeTarget "OpenGLTutorialsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18121DC81E179B55006FAF10 /* Debug */,
+				18121DC91E179B55006FAF10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

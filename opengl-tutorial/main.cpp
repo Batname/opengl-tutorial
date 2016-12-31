@@ -7,6 +7,9 @@
 #include <vector>
 #include <fstream>
 
+// for accert
+#include <cassert>
+
 // GLEW
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -16,6 +19,8 @@
 
 // GLM for math
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 
 // local files
 #include "LoadShaders.h"
@@ -29,12 +34,11 @@ static const GLfloat g_vertex_buffer_data[] = {
     +0.0f, +1.0f, +0.0f
 };
 
+int WIDTH = 1024, HEIGHT = 786;
+
 int main(int argc, const char * argv[]) {
-    // init glfw
-    if (!glfwInit()) {
-        fprintf(stderr, "Failed to init glfw\n");
-        return EXIT_FAILURE;
-    }
+
+    assert(glfwInit() && "Failed to init glfw");
     
     glfwWindowHint(GLFW_SAMPLES, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -44,18 +48,13 @@ int main(int argc, const char * argv[]) {
     
     
     GLFWwindow * window;
-    window = glfwCreateWindow(1024, 786, "Tutorial 01", NULL, NULL);
-    if (window == NULL) {
-        fprintf(stderr, "Failad to open GLFW window\n");
-        return EXIT_FAILURE;
-    }
+    window = glfwCreateWindow(WIDTH, HEIGHT, "Tutorial 01", NULL, NULL);
+    
+    assert(window && "Failad to open GLFW window");
 
     glfwMakeContextCurrent(window);
     glewExperimental = true;
-    if (glewInit() != GLEW_OK) {
-        fprintf(stderr, "Failad init GLEW \n");
-        return EXIT_FAILURE;
-    }
+    assert((glewInit() == GLEW_OK) && "Failad init GLEW");
     
     // glfw settings
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
@@ -73,8 +72,15 @@ int main(int argc, const char * argv[]) {
     
     do{
         // setup matrix coordinates
-        mat4 mvp;
-        
+        mat4 Projection = glm::perspective(glm::radians(45.0f), (float) WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+        mat4 View = glm::lookAt(
+            vec3(4.0f, 3.0f, 3.0f),
+            vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.0f, 1.0f, 0.0f)
+        );
+        mat4 Model = mat4(1.0f);
+        mat4 mvp = Projection * View * Model;
+
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

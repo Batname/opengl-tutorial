@@ -21,17 +21,76 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-
 // local files
 #include "LoadShaders.h"
+
+// macros
+#define verticesQty(a,b) (sizeof(a) / sizeof(b))
 
 using namespace std;
 using namespace glm;
 
-static const GLfloat g_vertex_buffer_data[] = {
-    -1.0f, -1.0f, +0.0f,
-    +1.0f, -1.0f, +0.0f,
-    +0.0f, +1.0f, +0.0f
+static const mat3 g_vertex_buffer_data[] = {
+    mat3(
+        vec3(-1.0f, -1.0f, +0.0f),
+        vec3(+1.0f, -1.0f, +0.0f),
+        vec3(+0.0f, +1.0f, +0.0f)
+    ),
+    mat3(
+        vec3(1.0f, 1.0f,-1.0),
+        vec3(-1.0f,-1.0f,-1.0f),
+        vec3(-1.0f, 1.0f,-1.0f)
+    ),
+    mat3(
+        vec3(1.0f,-1.0f, 1.0f),
+        vec3(-1.0f,-1.0f,-1.0f),
+        vec3(1.0f,-1.0f,-1.0f)
+    ),
+    mat3(
+        vec3(1.0f, 1.0f,-1.0f),
+        vec3(1.0f,-1.0f,-1.0f),
+        vec3(-1.0f,-1.0f,-1.0f)
+    ),
+    mat3(
+        vec3(-1.0f,-1.0f,-1.0f),
+        vec3(-1.0f, 1.0f, 1.0f),
+        vec3(-1.0f, 1.0f,-1.0f)
+    ),
+    mat3(
+        vec3(1.0f,-1.0f, 1.0f),
+        vec3(-1.0f,-1.0f, 1.0f),
+        vec3(-1.0f,-1.0f,-1.0f)
+    ),
+    mat3(
+        vec3(-1.0f, 1.0f, 1.0f),
+        vec3(-1.0f,-1.0f, 1.0f),
+        vec3(1.0f,-1.0f, 1.0f)
+    ),
+    mat3(
+        vec3(1.0f, 1.0f, 1.0f),
+        vec3(1.0f,-1.0f,-1.0f),
+        vec3(1.0f, 1.0f,-1.0f)
+    ),
+    mat3(
+        vec3(1.0f,-1.0f,-1.0f),
+        vec3(1.0f, 1.0f, 1.0f),
+        vec3(1.0f,-1.0f, 1.0f)
+    ),
+    mat3(
+        vec3(1.0f, 1.0f, 1.0f),
+        vec3(1.0f, 1.0f,-1.0f),
+        vec3(-1.0f, 1.0f,-1.0f)
+    ),
+    mat3(
+        vec3(1.0f, 1.0f, 1.0f),
+        vec3(-1.0f, 1.0f,-1.0f),
+        vec3(-1.0f, 1.0f, 1.0f)
+    ),
+    mat3(
+        vec3(1.0f, 1.0f, 1.0f),
+        vec3(-1.0f, 1.0f, 1.0f),
+        vec3(1.0f,-1.0f, 1.0)
+    )
 };
 
 int WIDTH = 1024, HEIGHT = 786;
@@ -103,7 +162,7 @@ int main(int argc, const char * argv[]) {
             ((float *)((vec4 *)(&mvp) + 0) + 0) // == &mvp[0][0]
         );
         
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, verticesQty(g_vertex_buffer_data, vec3));
         glDisableVertexAttribArray(0);
         
         glfwSwapBuffers(window);
